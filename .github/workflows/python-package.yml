@@ -61,9 +61,22 @@ jobs:
       run: |
         python3 -m build
 
-    - name: Upload package to PyPI
-      if: github.event_name == 'push'
-      run: |
-        python3 -m pip install --upgrade twine
-        twine upload --verbose dist/*
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-to-pypi:
+    name: >-
+      Publish Python distribution to PyPI
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/PyRigidBody
+    permissions:
+      id-token: write
+
 
