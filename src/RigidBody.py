@@ -16,6 +16,7 @@ class RigidBody:
             self.position = np.array([x, y, z])
         else:
             raise TypeError("Invalid input type for position arguments.")
+
         if orientation is not None and isinstance(orientation, (list, np.ndarray)):
             for item in orientation:
                 if not isinstance(item, (float, int)):
@@ -24,7 +25,7 @@ class RigidBody:
                 # Assuming orientation is a quaternion (x, y, z, w)
                 self.rotation = R.from_quat(orientation)
             else:
-                # Assuming orientation is Euler angles in degrees (roll, pitch, yaw)
+                # Assuming orientation is Euler angles in radians (x, y, z)
                 self.rotation = R.from_euler('xyz', orientation, degrees=False)
         else:
             # Default identity rotation
@@ -33,11 +34,14 @@ class RigidBody:
         self.label = label
     
     def as_quaternion(self):
-        """Return the orientation as a quaternion (w, x, y, z)."""
+        """Return the orientation as a quaternion (x, y, z, w)."""
         return self.rotation.as_quat()
 
     def as_euler(self, degrees=False):
-        """Return the orientation as Euler angles (x, y, z) in degrees."""
+        """Return the orientation as Euler angles (x, y, z) in degrees.
+
+        :param degrees: Bool variable to choose if the return should be in degrees.
+        """
         return self.rotation.as_euler('xyz', degrees=degrees)
 
     def get_transformation_matrix(self):
