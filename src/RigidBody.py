@@ -16,8 +16,11 @@ class RigidBody:
         if isinstance(x, (float, int)) and isinstance(y, (float, int)) and isinstance(z, (float, int)):
             self.position = np.array([x, y, z])
         else:
-            raise TypeError("Invalid input type for position arguements.")
-        if orientation is not None:
+            raise TypeError("Invalid input type for position arguments.")
+        if orientation is not None and isinstance(orientation, (list, np.ndarray)):
+            for item in orientation:
+                if not isinstance(item, (float, int)):
+                    raise TypeError("Invalid input type for quaternion arguments")
             if is_quaternion:
                 # Assuming orientation is a quaternion (x, y, z, w)
                 self.rotation = R.from_quat(orientation)
@@ -113,10 +116,16 @@ class RigidBody:
     
     def update_position(self, x: float, y: float, z: float):
         """Update the position of the rigid body."""
-        self.position = np.array([x, y, z])
+        if isinstance(x, (float, int)) and isinstance(y, (float, int)) and isinstance(z, (float, int)):
+            self.position = np.array([x, y, z])
+        else:
+            raise TypeError("Invalid input type for quaternion arguments")
     
     def update_orientation(self, orientation, is_quaternion=False):
         """Update the orientation of the rigid body."""
+        for item in orientation:
+            if not isinstance(item, (float, int)):
+                raise TypeError("Invalid input type for quaternion arguments")
         if is_quaternion:
             self.rotation = R.from_quat(orientation)
         else:

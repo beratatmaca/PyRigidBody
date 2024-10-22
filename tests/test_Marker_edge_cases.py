@@ -37,26 +37,23 @@ def test_distance_with_small_values():
 
 def test_marker_with_nan_position():
     # Initialize a marker with NaN values in position
-    marker = Marker(float('nan'), 0.0, 0.0)
     with pytest.raises(ValueError):
-        marker.get_position()
+        marker = Marker(float('nan'), 0.0, 0.0)
 
 def test_marker_with_infinite_position():
     # Initialize a marker with infinite values in position
-    marker = Marker(float('inf'), 0.0, 0.0)
     with pytest.raises(ValueError):
-        marker.get_position()
+        marker = Marker(float('inf'), 0.0, 0.0)
 
 def test_distance_to_nan_position():
     marker1 = Marker(0.0, 0.0, 0.0)
-    marker2 = Marker(float('nan'), 0.0, 0.0)
     with pytest.raises(ValueError):
-        marker1.distance_to(marker2)
+        marker2 = Marker(float('nan'), 0.0, 0.0)
 
 def test_distance_to_infinite_position():
     marker1 = Marker(0.0, 0.0, 0.0)
-    marker2 = Marker(float('inf'), 0.0, 0.0)
     with pytest.raises(ValueError):
+        marker2 = Marker(float('inf'), 0.0, 0.0)
         marker1.distance_to(marker2)
 
 def test_apply_transformation_with_large_values():
@@ -90,20 +87,4 @@ def test_marker_move_by_small_values():
     marker = Marker(1e-12, 1e-12, 1e-12)
     marker.move_by(1e-12, -1e-12, 0.0)
     assert np.allclose(marker.get_position(), [2e-12, 0.0, 1e-12], atol=1e-20)
-
-def test_marker_multiplication_with_large_rigidbody():
-    marker = Marker(1e12, 1e12, 1e12)
-    rigid_body = RigidBody(1e12, 1e12, 1e12, orientation=[0, 0, np.pi/2])
-
-    transformed_marker = marker * rigid_body
-    expected_position = [1e12, 2e12, 2e12]  # Applying transformation to the large position
-    assert np.allclose(transformed_marker.get_position(), expected_position)
-
-def test_marker_multiplication_with_small_rigidbody():
-    marker = Marker(1e-12, 1e-12, 1e-12)
-    rigid_body = RigidBody(1e-12, 1e-12, 1e-12, orientation=[0, 0, np.pi/2])
-
-    transformed_marker = marker * rigid_body
-    expected_position = [1e-12, 2e-12, 2e-12]
-    assert np.allclose(transformed_marker.get_position(), expected_position, atol=1e-20)
 

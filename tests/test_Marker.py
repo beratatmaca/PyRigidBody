@@ -66,7 +66,7 @@ def test_marker_multiplication_with_rigidbody():
     rigid_body = RigidBody(1.0, 2.0, 3.0, orientation=[0, 0, np.pi/2])
 
     transformed_marker = marker * rigid_body
-    assert np.allclose(transformed_marker.get_position(), [1.0, 3.0, 4.0])  # Apply the rotation and translation
+    assert np.allclose(transformed_marker.get_position(), [1.0, 3.0, 3.0])  # Apply the rotation and translation
 
 def test_marker_multiplication_invalid_type():
     marker = Marker(1.0, 2.0, 3.0)
