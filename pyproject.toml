@@ -3,35 +3,23 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_rigidbody_package"
-version = "0.1.0"
-description = "A package for handling rigid body transformations and markers in 3D space"
-readme = "README.md"
-readme-content-type = "text/markdown"
-license = {text = "MIT"}
+name = "PyRigidBody"
+version = "0.0.1"
 authors = [
     {name = "Berat Atmaca", email = "beratatmaca@live.com"}
 ]
-homepage = "https://github.com/yourusername/my_rigidbody_package"
-requires-python = ">=3.6"
-keywords = ["rigidbody", "marker", "transformation", "quaternion", "euler"]
+description = "A package for handling rigid body transformations and markers in 3D space"
+readme = "README.md"
+requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
 ]
+
+[project.urls]
+Homepage = "https://github.com/beratatmaca/PyRigidBody"
+Issues = "https://github.com/beratatmaca/PyRigidBody/issues"
 
 [project.optional-dependencies]
 testing = ["pytest"]
-
-[project.urls]
-"Bug Tracker" = "https://github.com/yourusername/my_rigidbody_package/issues"
-"Source" = "https://github.com/yourusername/my_rigidbody_package"
-
-[tool.setuptools]
-packages = ["my_rigidbody"]
-
-[tool.setuptools.package-data]
-my_rigidbody = ["*.py"]
-
-[tool.setuptools.scripts]
