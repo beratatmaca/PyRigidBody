@@ -1,9 +1,13 @@
-# test_rigidbody_edge_cases.py
-
+import os
+import sys
 import pytest
 import numpy as np
 from scipy.spatial.transform import Rotation as R
-from your_module import RigidBody
+
+WORKSPACE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+sys.path.append(WORKSPACE_PATH)
+
+from src.RigidBody import RigidBody
 
 def test_invalid_quaternion_length():
     # Quaternion should have 4 elements, test with invalid lengths

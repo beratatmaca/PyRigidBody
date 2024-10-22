@@ -1,8 +1,13 @@
-# test_marker_edge_cases.py
-
+import os
+import sys
 import pytest
 import numpy as np
-from your_module import Marker, RigidBody  # Replace 'your_module' with the actual path/module name
+
+WORKSPACE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+sys.path.append(WORKSPACE_PATH)
+
+from src.Marker import Marker
+from src.RigidBody import RigidBody
 
 def test_marker_with_very_large_values():
     # Test initialization with very large coordinates

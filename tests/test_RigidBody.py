@@ -1,9 +1,13 @@
-# test_rigidbody.py
-
+import os
+import sys
 import pytest
 import numpy as np
 from scipy.spatial.transform import Rotation as R
-from your_module import RigidBody  # Replace 'your_module' with the actual name of your module
+
+WORKSPACE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+sys.path.append(WORKSPACE_PATH)
+
+from src.RigidBody import RigidBody
 
 def test_initialization_with_euler():
     body = RigidBody(1.0, 2.0, 3.0, orientation=[np.pi/2, 0, 0])
