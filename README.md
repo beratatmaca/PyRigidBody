@@ -6,8 +6,11 @@ This package provides two main classes: `RigidBody` and `Marker` for representin
 
 ## Installation
 
-You can install the package via pip:
-`pip install PyRigidBody`
+You can install the package via pip
+
+```bash
+pip install PyRigidBody
+```
 
 ## Usage
 
