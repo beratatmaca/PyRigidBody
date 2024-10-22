@@ -4,7 +4,7 @@ site_author: Berat Atmaca
 
 # Repository
 repo_name: PyRigidBody
-repo_url: https://github.com/<you github account>/PyRigidBody
+repo_url: https://github.com/beratatmaca/PyRigidBody
 edit_uri: edit/master/docs
 docs_dir: docs
 
