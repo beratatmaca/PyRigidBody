@@ -1,0 +1,16 @@
+site_name: <your site name>
+site_url: https://<you github account>.github.io/PyRigidBody
+site_author: Berat Atmaca
+
+# Repository
+repo_name: PyRigidBody
+repo_url: https://github.com/<you github account>/PyRigidBody
+edit_uri: edit/master/docs
+docs_dir: docs
+
+plugins:
+    - awesome-pages
+    - search
+
+theme:
+  name: readthedocs
