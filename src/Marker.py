@@ -1,13 +1,17 @@
+import sys
+import os
 import math
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from .RigidBody import RigidBody
+FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(FILE_DIR)
+
+from RigidBody import RigidBody
 
 class Marker:
     def __init__(self, x: float, y: float, z: float, label: str = None):
-        """
-        Initialize a Marker with position (x, y, z) and an optional label.
+        """Initialize a Marker with position (x, y, z) and an optional label.
         
         :param x: X coordinate of the marker.
         :param y: Y coordinate of the marker.
@@ -32,8 +36,7 @@ class Marker:
         self.position = np.array([x, y, z])
 
     def distance_to(self, other):
-        """
-        Compute the Euclidean distance between this marker and another marker.
+        """Compute the Euclidean distance between this marker and another marker.
         
         :param other: Another Marker object.
         :return: The Euclidean distance between the two markers.
@@ -48,8 +51,7 @@ class Marker:
         self.position += np.array([dx, dy, dz])
 
     def apply_transformation(self, transformation_matrix: np.ndarray):
-        """
-        Apply a 4x4 transformation matrix to the marker's position.
+        """Apply a 4x4 transformation matrix to the marker's position.
         
         :param transformation_matrix: A 4x4 transformation matrix that includes rotation and translation.
         """
@@ -66,8 +68,7 @@ class Marker:
         self.position = transformed_position[:3]
 
     def __mul__(self, other):
-        """
-        Multiply the Marker by a RigidBody's transformation matrix.
+        """Multiply the Marker by a RigidBody's transformation matrix.
         
         :param other: A RigidBody object.
         :return: A new Marker object with the transformed position.

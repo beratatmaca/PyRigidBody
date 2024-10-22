@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 # <kbd>module</kbd> `RigidBody`
 
@@ -11,14 +11,14 @@
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L4"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>class</kbd> `RigidBody`
 
 
 
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L5"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -42,7 +42,7 @@ Initialize a RigidBody with position (x, y, z) and orientation.
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L39"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L39"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `as_euler`
 
@@ -54,7 +54,7 @@ Return the orientation as Euler angles (x, y, z) in degrees.
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `as_quaternion`
 
@@ -66,7 +66,7 @@ Return the orientation as a quaternion (w, x, y, z).
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `get_inverse_transformation_matrix`
 
@@ -82,7 +82,7 @@ Where R^T is the transpose (inverse) of the rotation matrix, and T is the transl
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `get_transformation_matrix`
 
@@ -98,7 +98,7 @@ The matrix is in the form:
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L122"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L122"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `update_orientation`
 
@@ -110,7 +110,7 @@ Update the orientation of the rigid body.
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L115"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../src/RigidBody.py#L115"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `update_position`
 

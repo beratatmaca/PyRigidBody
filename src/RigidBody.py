@@ -3,8 +3,7 @@ from scipy.spatial.transform import Rotation as R
 
 class RigidBody:
     def __init__(self, x: float, y: float, z: float, orientation=None, is_quaternion=False, label: str = None):
-        """
-        Initialize a RigidBody with position (x, y, z) and orientation.
+        """Initialize a RigidBody with position (x, y, z) and orientation.
         
         :param x: X coordinate of the body.
         :param y: Y coordinate of the body.
@@ -42,8 +41,8 @@ class RigidBody:
         return self.rotation.as_euler('xyz', degrees=degrees)
 
     def get_transformation_matrix(self):
-        """
-        Return the 4x4 transformation matrix that includes both the rotation and the translation.
+        """Return the 4x4 transformation matrix that includes both the rotation and the translation.
+
         The matrix is in the form:
         
         | R(3x3)  T(3x1)  |
@@ -60,8 +59,7 @@ class RigidBody:
         return transformation_matrix
 
     def get_inverse_transformation_matrix(self):
-        """
-        Return the inverse of the 4x4 transformation matrix. The inverse is calculated as:
+        """Return the inverse of the 4x4 transformation matrix. The inverse is calculated as following.
         
         | R^T(3x3)    -R^T * T(3x1)  |
         |   0  0  0         1        |
@@ -85,8 +83,8 @@ class RigidBody:
         return inverse_transformation_matrix
 
     def __mul__(self, other):
-        """
-        Multiply two RigidBody transformations.
+        """Multiply two RigidBody transformations.
+
         This represents the composition of transformations: first apply `self`, then `other`.
         
         :param other: Another RigidBody to multiply with.

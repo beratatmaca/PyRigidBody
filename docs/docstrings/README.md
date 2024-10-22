@@ -4,10 +4,12 @@
 
 ## Modules
 
+- [`Marker`](./Marker.md#module-marker)
 - [`RigidBody`](./RigidBody.md#module-rigidbody)
 
 ## Classes
 
+- [`Marker.Marker`](./Marker.md#class-marker)
 - [`RigidBody.RigidBody`](./RigidBody.md#class-rigidbody)
 
 ## Functions
