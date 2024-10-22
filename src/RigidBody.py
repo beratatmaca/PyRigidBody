@@ -13,8 +13,10 @@ class RigidBody:
                             If None, default orientation is used (identity rotation).
         :param is_quaternion: If True, 'orientation' is treated as a quaternion, otherwise Euler angles (radians).
         """
-        self.position = np.array([x, y, z])
-        
+        if isinstance(x, (float, int)) and isinstance(y, (float, int)) and isinstance(z, (float, int)):
+            self.position = np.array([x, y, z])
+        else:
+            raise TypeError("Invalid input type for position arguements.")
         if orientation is not None:
             if is_quaternion:
                 # Assuming orientation is a quaternion (x, y, z, w)
@@ -118,4 +120,4 @@ class RigidBody:
         if is_quaternion:
             self.rotation = R.from_quat(orientation)
         else:
-            self.rotation = R.from_euler('xyz', orientation, degrees=True)
+            self.rotation = R.from_euler('xyz', orientation, degrees=False)

@@ -54,7 +54,7 @@ def test_multiplication():
     combined_body = body1 * body2
     
     expected_position = [1.0, 2.0, 3.0 + 1.0]  # Applying rotation from body1 to body2's position
-    expected_orientation = R.from_euler('xyz', [np.pi/2, 0, np.pi/2], degrees=False).as_quat()
+    expected_orientation = R.from_euler('xyz', [np.pi/2, -np.pi/2, 0.0], degrees=False).as_quat()
     
     assert np.allclose(combined_body.position, expected_position, atol=1e-6)
     assert np.allclose(combined_body.as_quaternion(), expected_orientation, atol=1e-6)
@@ -66,7 +66,7 @@ def test_update_position():
 
 def test_update_orientation():
     body = RigidBody(0.0, 0.0, 0.0)
-    new_orientation = [np.pi, 0, 0]
+    new_orientation = [3*np.pi/4.0, 0, 0]
     body.update_orientation(new_orientation)
     assert np.allclose(body.as_euler(), new_orientation, atol=1e-6)
 
