@@ -7,11 +7,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    strategy:
+      matrix:
+        python-version: [3.7]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: ${{ matrix.python-version }}
       - run: |
           pip install lazydocs mkdocs mkdocs-awesome-pages-plugin
       - run: chmod +x ./build-docs.sh

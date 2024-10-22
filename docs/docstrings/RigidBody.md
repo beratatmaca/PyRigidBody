@@ -42,7 +42,7 @@ Initialize a RigidBody with position (x, y, z) and orientation.
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L39"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `as_euler`
 
@@ -52,9 +52,11 @@ as_euler(degrees=False)
 
 Return the orientation as Euler angles (x, y, z) in degrees. 
 
+:param degrees: Bool variable to choose if the return should be in degrees. 
+
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L36"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `as_quaternion`
 
@@ -62,11 +64,11 @@ Return the orientation as Euler angles (x, y, z) in degrees.
 as_quaternion()
 ```
 
-Return the orientation as a quaternion (w, x, y, z). 
+Return the orientation as a quaternion (x, y, z, w). 
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `get_inverse_transformation_matrix`
 
@@ -82,7 +84,7 @@ Where R^T is the transpose (inverse) of the rotation matrix, and T is the transl
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `get_transformation_matrix`
 
@@ -98,7 +100,7 @@ The matrix is in the form:
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L122"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L126"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `update_orientation`
 
@@ -110,7 +112,7 @@ Update the orientation of the rigid body.
 
 ---
 
-<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L115"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="https://github.com/<you github account>/<your repo>/blob/master/src/RigidBody.py#L119"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ### <kbd>method</kbd> `update_position`
 
