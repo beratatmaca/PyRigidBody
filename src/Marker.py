@@ -1,3 +1,4 @@
+import math
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
@@ -13,6 +14,12 @@ class Marker:
         :param z: Z coordinate of the marker.
         :param label: Optional label or identifier for the marker.
         """
+        if not(math.isfinite(x)):
+            raise ValueError("x must be finite")
+        if not(math.isfinite(y)):
+            raise ValueError("y must be finite")
+        if not(math.isfinite(z)):
+            raise ValueError("z must be finite")
         self.position = np.array([x, y, z])
         self.label = label
     
