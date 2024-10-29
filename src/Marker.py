@@ -4,6 +4,7 @@ import math
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 from typing import Optional
+import matplotlib.pyplot as plt
 
 class Marker:
     def __init__(self, x: float, y: float, z: float, label: Optional[str] = None) -> None:
@@ -81,6 +82,24 @@ class Marker:
         
         # Update the position (ignoring the homogeneous coordinate)
         self.position = transformed_position[:3]
+
+    def plot(self, ax: plt.Axes, color: str = 'r', fontsize: int = 12, font_color: str = 'black') -> None:
+        """Plot the marker's position and label on the given Matplotlib axis.
+        
+        :param ax: The Matplotlib axis to plot on.
+        :param color: Color of the marker point. Default is red.
+        :param fontsize: Font size of the label text. Default is 12.
+        :param font_color: Color of the label text. Default is black.
+        """
+        # Get the marker position
+        pos = self.get_position()
+        
+        # Plot the marker as a point
+        ax.scatter(pos[0], pos[1], pos[2], color=color, s=50)
+        
+        # Annotate the label next to the marker
+        if self.label:
+            ax.text(pos[0], pos[1], pos[2], self.label, fontsize=fontsize, color=font_color)
 
     def __repr__(self) -> str:
         """String representation of the Marker, showing its label and position.
