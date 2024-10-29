@@ -1,6 +1,7 @@
 import os
 import sys
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation as R
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -143,3 +144,24 @@ class RigidBody:
             self.rotation = R.from_quat(orientation)
         else:
             self.rotation = R.from_euler('xyz', orientation, degrees=False)
+
+    def plot(self, ax: plt.Axes, marker_color: str = 'r', arrow_length: float = 1.0) -> None:
+        """Plot the position and orientation of the RigidBody on the given Matplotlib axis.
+        
+        :param ax: The Matplotlib axis to plot on.
+        :param marker_color: Color of the position marker. Default is red.
+        :param orientation_color: Color of the orientation arrow. Default is blue.
+        :param arrow_length: Length of the orientation arrow. Default is 1.0.
+        """
+        # Plot the position of the RigidBody
+        ax.scatter(*self.position, color=marker_color, label=self.label or "RigidBody")
+
+        # Define the orientation vectors for X, Y, and Z axes
+        x_axis = self.rotation.apply(np.array([arrow_length, 0, 0]))  # X orientation
+        y_axis = self.rotation.apply(np.array([0, arrow_length, 0]))  # Y orientation
+        z_axis = self.rotation.apply(np.array([0, 0, arrow_length]))  # Z orientation
+
+        # Plot the orientation arrows
+        ax.quiver(*self.position, *x_axis, color='r', length=arrow_length, normalize=True, label='X orientation')
+        ax.quiver(*self.position, *y_axis, color='g', length=arrow_length, normalize=True, label='Y orientation')
+        ax.quiver(*self.position, *z_axis, color='b', length=arrow_length, normalize=True, label='Z orientation')
