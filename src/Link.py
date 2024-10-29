@@ -2,6 +2,7 @@ import os
 import sys
 import numpy as np
 from typing import Optional
+import matplotlib.pyplot as plt
 
 FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(FILE_DIR)
@@ -81,6 +82,24 @@ class Link:
         
         # Return the angle in radians
         return np.arccos(cos_theta)
+
+    def plot(self, ax: plt.Axes, marker_color: str = 'r', line_color: str = 'k') -> None:
+        """Plot the markers and the link on the given Matplotlib axis.
+        
+        :param ax: The Matplotlib axis to plot on.
+        :param marker_color: Color of the first marker. Default is red.
+        :param line_color: Color of the line connecting the markers. Default is black.
+        """
+        # Get positions of the markers
+        pos1 = self.marker1.get_position()
+        pos2 = self.marker2.get_position()
+        
+        # Plot the markers
+        self.marker1.plot(ax, color=marker_color)
+        self.marker2.plot(ax, color=marker_color)
+        
+        # Plot the line connecting the markers
+        ax.plot([pos1[0], pos2[0]], [pos1[1], pos2[1]], [pos1[2], pos2[2]], color=line_color)
 
     def __repr__(self) -> str:
         """String representation of the Link, showing its label and length.
