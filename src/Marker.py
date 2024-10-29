@@ -3,20 +3,17 @@ import os
 import math
 import numpy as np
 from scipy.spatial.transform import Rotation as R
-
-FILE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(FILE_DIR)
-
-from RigidBody import RigidBody
+from typing import Optional
 
 class Marker:
-    def __init__(self, x: float, y: float, z: float, label: str = None):
+    def __init__(self, x: float, y: float, z: float, label: Optional[str] = None) -> None:
         """Initialize a Marker with position (x, y, z) and an optional label.
         
         :param x: X coordinate of the marker.
         :param y: Y coordinate of the marker.
         :param z: Z coordinate of the marker.
         :param label: Optional label or identifier for the marker.
+        :raises ValueError: If x, y, or z are not finite values.
         """
         if not(math.isfinite(x)):
             raise ValueError("x must be finite")
@@ -27,33 +24,51 @@ class Marker:
         self.position = np.array([x, y, z])
         self.label = label
     
-    def get_position(self):
-        """Return the position of the marker as a numpy array (x, y, z)."""
+    def get_position(self) -> np.ndarray:
+        """Return the position of the marker as a numpy array (x, y, z).
+        
+        :return: Numpy array representing the marker's position.
+        """
         return self.position
 
-    def set_position(self, x: float, y: float, z: float):
-        """Set a new position for the marker."""
+    def set_position(self, x: float, y: float, z: float) -> None:
+        """Set a new position for the marker.
+        
+        :param x: New X coordinate.
+        :param y: New Y coordinate.
+        :param z: New Z coordinate.
+        """
         self.position = np.array([x, y, z])
 
-    def distance_to(self, other):
+    def distance_to(self, other: "Marker") -> float:
         """Compute the Euclidean distance between this marker and another marker.
         
         :param other: Another Marker object.
+        :type other: Marker
         :return: The Euclidean distance between the two markers.
+        :rtype: float
+        :raises TypeError: If `other` is not a Marker instance.
         """
         if not isinstance(other, Marker):
             raise TypeError("Can only compute distance to another Marker.")
         
         return np.linalg.norm(self.position - other.position)
 
-    def move_by(self, dx: float, dy: float, dz: float):
-        """Move the marker by a given amount in the x, y, and z directions."""
+    def move_by(self, dx: float, dy: float, dz: float) -> None:
+        """Move the marker by a given amount in the x, y, and z directions.
+        
+        :param dx: Amount to move in the X direction.
+        :param dy: Amount to move in the Y direction.
+        :param dz: Amount to move in the Z direction.
+        """
         self.position += np.array([dx, dy, dz])
 
-    def apply_transformation(self, transformation_matrix: np.ndarray):
+    def apply_transformation(self, transformation_matrix: np.ndarray) -> None:
         """Apply a 4x4 transformation matrix to the marker's position.
         
         :param transformation_matrix: A 4x4 transformation matrix that includes rotation and translation.
+        :type transformation_matrix: numpy.ndarray
+        :raises ValueError: If the transformation matrix is not 4x4.
         """
         if transformation_matrix.shape != (4, 4):
             raise ValueError("Transformation matrix must be a 4x4 matrix.")
@@ -67,22 +82,12 @@ class Marker:
         # Update the position (ignoring the homogeneous coordinate)
         self.position = transformed_position[:3]
 
-    def __mul__(self, other):
-        """Multiply the Marker by a RigidBody's transformation matrix.
+    def __repr__(self) -> str:
+        """String representation of the Marker, showing its label and position.
         
-        :param other: A RigidBody object.
-        :return: A new Marker object with the transformed position.
+        :return: String representation of the marker.
+        :rtype: str
         """
-        if isinstance(other, RigidBody):
-            transformation_matrix = other.get_transformation_matrix()
-            new_marker = Marker(*self.position, self.label)
-            new_marker.apply_transformation(transformation_matrix)
-            return new_marker
-        else:
-            raise TypeError("Can only multiply with a RigidBody.")
-
-    def __repr__(self):
-        """String representation of the Marker."""
         pos_str = f"Position: {self.position}"
         label_str = f"Label: {self.label}" if self.label else "No Label"
         return f"Marker({label_str}, {pos_str})"

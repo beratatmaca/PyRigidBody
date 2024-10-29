@@ -25,16 +25,27 @@ def test_default_initialization():
     assert np.allclose(body.position, [0.0, 0.0, 0.0])
     assert np.allclose(body.as_euler(), [0.0, 0.0, 0.0])
 
-def test_transformation_matrix():
-    body = RigidBody(1.0, 2.0, 3.0, orientation=[0, 0, np.pi/2])
+def test_transformation_inverse_transformation_matrices():
+    body = RigidBody(1.0, 2.0, 3.0, orientation=[np.pi/6, np.pi*5/6, -np.pi/4])
     matrix = body.get_transformation_matrix()
-    
-    expected_matrix = np.array([[0, -1, 0, 1],
-                                [1,  0, 0, 2],
-                                [0,  0, 1, 3],
-                                [0,  0, 0, 1]])
+    inverse_transformation_matrix = body.get_inverse_transformation_matrix()
+
+    rotation = R.from_euler("xyz", [30, 150, -45], degrees=True)
+    rotation_matrix = rotation.as_matrix()
+    translation = np.array([1.0, 2.0, 3.0])
+    expected_matrix = np.eye(4)
+    expected_matrix[:3, :3] = rotation_matrix
+    expected_matrix[:3, 3] = translation
+
+    inverse_rotation_matrix = rotation.inv().as_matrix()
+    inverse_translation = -inverse_rotation_matrix @ translation
+
+    expected_inverse_transformation_matrix = np.eye(4)
+    expected_inverse_transformation_matrix[:3, :3] = inverse_rotation_matrix
+    expected_inverse_transformation_matrix[:3, 3] = inverse_translation
     
     assert np.allclose(matrix, expected_matrix, atol=1e-6)
+    assert np.allclose(inverse_transformation_matrix, expected_inverse_transformation_matrix, atol=1e-6)
 
 def test_inverse_transformation_matrix():
     body = RigidBody(1.0, 2.0, 3.0, orientation=[0, 0, np.pi/2])

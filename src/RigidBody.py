@@ -1,6 +1,12 @@
+import os
+import sys
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
+FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(FILE_DIR)
+
+from Marker import Marker
 class RigidBody:
     def __init__(self, x: float, y: float, z: float, orientation=None, is_quaternion=False, label: str = None):
         """Initialize a RigidBody with position (x, y, z) and orientation.
@@ -94,20 +100,25 @@ class RigidBody:
         :param other: Another RigidBody to multiply with.
         :return: A new RigidBody that represents the combined transformation.
         """
-        if not isinstance(other, RigidBody):
+        if isinstance(other, RigidBody):
+            # Combine rotations
+            combined_rotation = self.rotation * other.rotation
+            
+            # Transform the second body's position by the first body's rotation
+            transformed_position = self.rotation.apply(other.position)
+            
+            # Combine positions (translation)
+            combined_position = self.position + transformed_position
+            
+            # Return a new RigidBody with the combined transformation
+            return RigidBody(combined_position[0], combined_position[1], combined_position[2], combined_rotation.as_quat(), is_quaternion=True)
+        elif isinstance(other, Marker):
+            transformation_matrix = other.get_transformation_matrix()
+            new_marker = Marker(*self.position, self.label)
+            new_marker.apply_transformation(transformation_matrix)
+            return new_marker
+        else:
             raise TypeError("Can only multiply with another RigidBody.")
-        
-        # Combine rotations
-        combined_rotation = self.rotation * other.rotation
-        
-        # Transform the second body's position by the first body's rotation
-        transformed_position = self.rotation.apply(other.position)
-        
-        # Combine positions (translation)
-        combined_position = self.position + transformed_position
-        
-        # Return a new RigidBody with the combined transformation
-        return RigidBody(combined_position[0], combined_position[1], combined_position[2], combined_rotation.as_quat(), is_quaternion=True)
 
     def __repr__(self):
         """String representation of the RigidBody."""
